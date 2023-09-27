@@ -1,0 +1,38 @@
+PUT http://localhost:8000/api/gallery/650978df29956bd7c90ead93
+Content-Type: application/json
+
+{
+    "image": "",
+    "dimensions": "5ft x 3ft",
+    "medium": "Acrylic on canvas",
+    "title": "The Orient Express",
+    "text": "A train traveling through a valley covered in snow",
+    "width": 10,
+    "height": 17 
+}
+
+###
+
+GET http://localhost:8000/api/gallery
+
+###
+
+POST http://localhost:8000/api/gallery/new
+Content-Type: application/json
+
+{
+    "image": "https://unsplash.com/photos/a-train-traveling-through-a-valley-covered-in-snow-CO5BhPPhkkY",
+    "dimensions": "5ft x 3ft",
+    "medium": "Acrylic on canvas",
+    "title": "Raiia is the best <3<3<3",
+    "text": "I love her so much she cooked me food i love you babyyyyyyy",
+    "width": 10,
+    "height": 17 
+}
+
+###
+
+DELETE http://localhost:8000/api/gallery/delete/6513c56faaee6a00933162b9
+
+
+###

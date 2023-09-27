@@ -35,3 +35,10 @@
   top: 60px;
   margin: 10px;
 }
+
+.upload {
+  border: none;
+  color: black;
+  background-color: transparent;
+  font-size: larger;
+}

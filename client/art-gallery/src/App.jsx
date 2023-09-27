@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import Painting from './components/paintings/Painting';
-import UploadForm from './components/upload/Upload';
+// import Painting from './components/paintings/Painting';
+// import UploadForm from './components/upload/Upload';
 import axios from 'axios';
-
+// import gg from './images/1695796179730_1.png'
 
 function App() {
   
@@ -18,22 +18,36 @@ function App() {
   }, [])
 
   // console.log(painting)
-    const paintings = painting?.map(item => {
+  // console.log(gg)
+    const paintings = painting?.reverse()?.map(item => {
+
         // const string = item.image.data.data.toString('base64');
         // const imageString = btoa(String.fromCharCode(...new Uint8Array(string)));
-       
+      
+      
+        //  console.log(item)
 
         return (
-          <Painting
-            key={item._id}
-            image={item.image}
-            dimensions={item.dimensions}
-            medium={item.medium}
-            title={item.title}
-            text={item.text}
-            width={item.width}
-            height={item.height}
-          />
+          // <Painting
+          //   key={item._id}
+          //   image={item.image}
+          //   dimensions={item.dimensions}
+          //   medium={item.medium}
+          //   title={item.title}
+          //   text={item.text}
+          //   width={item.width}
+          //   height={item.height}
+          // />
+          <div className="painting" key={item._id}>
+                <h1>{item.title}</h1>
+                
+                <div className="image"><img src={`/src/images/${item.image}`} alt={item.title} style={{ width: `${item.width}rem`, height: `${item.height}rem` }} /> </div>
+                    <div className="text">
+                        <span>{item.dimensions}</span>
+                        <span>{item.medium}</span>
+                        <p>{item.text}</p>
+                    </div>
+            </div>   
         );
         });
 
@@ -41,7 +55,6 @@ function App() {
     <div className='app'>
       
       <div className="container">
-      <UploadForm />
         {paintings}
       </div>
     </div>

@@ -32,7 +32,7 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:8000/api/gallery/delete/6513c56faaee6a00933162b9
+DELETE http://localhost:8000/api/gallery/delete/6513edac12fbdbf874df9470
 
 
 ###

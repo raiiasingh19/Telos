@@ -1,6 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Architects+Daughter&family=Kalam&family=Macondo&family=Sedgwick+Ave+Display&display=swap');
+
 * {
   margin: 0;
   padding: 0;
+
+}
+
+body {
+  background-image: url(./assets/wall2jpg.jpg);
+  background-size: cover;
+  background-attachment: fixed; 
+  overflow-x: hidden;
+}
+
+.app {
+  z-index: -5;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 5%;
+  padding-top: 10px;
+  gap: 4rem;
 }
 
 .navbar {
@@ -10,10 +30,19 @@
   align-items: center;
   padding: 10px 10px 10px 10px;
   height: 50px;
+  margin-bottom: 10px;
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.4);
-  position: fixed;
+  position: sticky;
   top: 0;
   width: 100%;
+  background-color: black;
+  color: ivory;
+  z-index: 6;
+}
+
+a {
+  text-decoration: none;
+  color: ivory;
 }
 
 .logo {
@@ -26,7 +55,10 @@
 
 .nav-text {
   margin-right: 40px;
-  margin-top: 10px;
+}
+
+.nav-text:hover, .upload:hover {
+  color: rgb(207, 195, 195);
 }
 
 .container {
@@ -38,7 +70,175 @@
 
 .upload {
   border: none;
-  color: black;
+  color: white;
   background-color: transparent;
   font-size: larger;
+  margin-right: 40px;
+}
+
+.form-container {
+  height: 70%;
+  width: 33%;
+  position: absolute;
+  left: 33.5%;
+  top: 10%;
+  margin-top: 5%;
+}
+
+.form {
+  width: 100%;
+  border: 3px solid rgb(107, 95, 24);
+  border-radius: 5px;
+  background-color: rgb(255, 255, 240);
+}
+
+.form-title, .form-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  color: rgb(107, 95, 24);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.form-header {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  background-color: rgb(255, 255, 240);
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom: 1px solid rgb(107, 95, 24);
+  border-top: 3px solid rgb(107, 95, 24);
+}
+
+.form-body {
+  margin-top: 15%;
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.input-image, .dimensions, .medium, .title, .description, .width, .height, .buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  width: 75%;
+}
+
+.input-field {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+#image-input {
+  position: absolute;
+  right: -6%;
+  top: 220%;
+}
+
+.buttons {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.clear:hover, .submit:hover {
+  background-color: rgba(197, 197, 182, 0.764);
+}
+
+.clear {
+  position: relative;
+  left: 50px;
+  width: 30%;
+  border: none; 
+  text-transform: capitalize;
+  background-color: rgb(255, 255, 240);
+  border: 4px solid rgb(107, 95, 24);
+  border-style: double;
+  border-radius: 5px;
+  padding: 3px;
+  color: rgb(107, 95, 24); 
+}
+
+.submit {
+  position: relative;
+  left: -65px;
+  width: 30%;
+  height: 30px;
+  border: none;
+  text-transform: capitalize;
+  background-color: rgb(255, 255, 240);
+  border: 4px solid rgb(107, 95, 24);
+  border-style: double;
+  border-radius: 5px;
+  padding: 3px;
+  color: rgb(107, 95, 24);
+}
+
+.painting-container {
+  padding: 15px;
+  margin: 10px;
+  width: fit-content;
+  max-width: 25%;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: linear-gradient(to bottom right, transparent, rgba(255, 255, 255, 0.2));
+  backdrop-filter: blur(1px);
+  border: 2px solid rgb(226, 222, 222);
+  border-style: inset;
+  box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+.item-title {
+  max-width: 75%;
+}
+
+.painting-container:hover {
+  background-image: radial-gradient(rgba(250, 241, 177, 0.5), rgba(243, 247, 196, 0.4), rgba(255, 255, 255, 0.3));
+  box-shadow: 0px 0px 20px 10px rgba(255, 255, 240, 0.4);
+}
+
+.image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  border: 15px solid black;
+  border-style: inset ridge;
+  background-color: white;
+  margin-top: 20px;
+}
+
+.specs {
+  padding: 10px;
+  margin: 5px;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.description {
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.item-title {
+  font-family: 'Architects Daughter', cursive;
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+
+#description {
+  font-size: 1rem;
+  font-weight: 500;
+  padding-top: 5%;
 }

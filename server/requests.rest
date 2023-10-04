@@ -1,14 +1,9 @@
-PUT http://localhost:8000/api/gallery/650978df29956bd7c90ead93
+PUT http://localhost:8000/api/gallery/6516e116e24272b5ebb76c2a
 Content-Type: application/json
 
 {
-    "image": "",
-    "dimensions": "5ft x 3ft",
-    "medium": "Acrylic on canvas",
-    "title": "The Orient Express",
-    "text": "A train traveling through a valley covered in snow",
-    "width": 10,
-    "height": 17 
+    "text": "xoxo",
+
 }
 
 ###
@@ -32,7 +27,7 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:8000/api/gallery/delete/6513edac12fbdbf874df9470
+DELETE http://localhost:8000/api/gallery/delete/651a996780279e5bd6d17d47
 
 
 ###

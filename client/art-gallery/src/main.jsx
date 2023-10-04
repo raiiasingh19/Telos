@@ -5,7 +5,8 @@ import Navbar from './components/navbar/Navbar'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <div>
+    
     <Navbar />
     <App />
-  </div>,
+  </div>
 )

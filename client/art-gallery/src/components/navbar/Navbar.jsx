@@ -5,9 +5,13 @@ import '../../App.css'
 export default function Nabvar() {
 
     const [isUploadClicked, setIsUploadClicked] = useState(false)
+    // const [uploadSymbol, setUploadSymbol] = useState("+")
     // Define the handleButtonClick function
     const handleUploadClick = () => {
     setIsUploadClicked (!isUploadClicked)
+    // isUploadClicked && (
+    //     setUploadSymbol("-")
+    // )
     };
 
     return (

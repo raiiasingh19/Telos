@@ -33,8 +33,9 @@ app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 app.use(express.json());
-app.use(cors());
-
+app.use(cors({
+  origin: 'http://localhost:5173',
+}));
 dotenv.config();
 
 const PORT = process.env.PORT || 6001;
@@ -46,12 +47,9 @@ app.get('/api/gallery', async (req,res) => {
 });
 
 app.post('/api/gallery/new', upload.single("image"), async (req, res) => {
-    // const image = req.body.image
+  
    const painting = await new Painting({
-        image: req.file.filename,
-        //     data: image,
-        //     contentType: 'image/png' // Set the appropriate content type based on the image type you're receiving
-        //   
+        image: req.file.filename,  
         dimensions: req.body.dimensions,
         medium: req.body.medium,
         title: req.body.title,
@@ -78,7 +76,8 @@ app.delete('/api/gallery/delete', async(req, res) => {
 
 app.put('/api/gallery/:id', async(req, res) => {
     const painting = await Painting.findById(req.params.id);
-    painting.image = req.body.image,
+
+    painting.image = req.file.filename,
     painting.dimensions = req.body.dimensions,
     painting.medium = req.body.medium,
     painting.title = req.body.title,

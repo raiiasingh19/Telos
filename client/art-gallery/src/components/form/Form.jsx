@@ -1,4 +1,4 @@
-import { useState} from "react";
+import { useState } from "react";
 import axios from "axios";
 import '../../App.css';
 
@@ -25,7 +25,6 @@ function Form() {
     const [width, setWidth] = useState("");
     const [height, setHeight] = useState("");
     const [painting, setPainting] = useState([]);
-
 // const getGallery = async() => {
 //     const painting =   axios.get(`http://localhost:8000/api/gallery`);
 //     setGallery(painting.data.data);
@@ -82,6 +81,9 @@ function Form() {
         .then((response) => {
             setPainting(response.data)
         }).catch((err) => console.log(err))
+
+        // formRef.current.focus();
+          
         
     }
 
@@ -103,21 +105,70 @@ function Form() {
     }
 
     return (
-        <div className='gallery'>
+        <div className='form-container'>
             <div className='form'>
                 <div className='form-header'>
-                <h4 className='form-title'>Upload a New Painting</h4>
+                <h3 className='form-title'>UPLOAD A NEW PAINTING</h3>
                 </div>
                 <div className='form-body'>
-                <form onSubmit={handleSubmit} encType="multipart/form-data">
-                    <div><input type="file" name="image" accept=".jpeg, .jpg, .png" onChange={(e) => handleFileChange(e)} /></div>
-                    <div><input type="text" placeholder="dimensions" value={dimensions} onChange={(e) => setDimensions(e.target.value)} /></div>
-                    <div><input type="text" placeholder="medium" value={medium} onChange={(e) => setMedium(e.target.value)} /></div>
-                    <div><input type="text" placeholder="title" value={title} onChange={(e) => setTitle(e.target.value)} /></div>
-                    <div><textarea placeholder="text" value={text} onChange={(e) => setText(e.target.value)} /></div>
-                    <div><input type="text" placeholder="width" value={width} onChange={(e) => setWidth(e.target.value)} /></div>
-                    <div><input type="text" placeholder="height" value={height} onChange={(e) => setHeight(e.target.value)} /></div>
-                    <div><button onClick={handleClear}> Clear </button> <input type="submit" /></div>
+                <form className="form-content" onSubmit={handleSubmit} encType="multipart/form-data">
+                <div className="input-image">
+                    <div className="input-text">
+                        <h4>Image:</h4>
+                    </div>
+                    <div>
+                        <input id="image-input" className="input-field" type="file" name="image" accept=".jpeg, .jpg, .png" onChange={(e) => handleFileChange(e)} />
+                    </div>
+                </div>
+                <div className="dimensions">
+                    <div className="input-text">
+                        <h4>Dimensions:</h4>
+                    </div>
+                    <div>
+                        <input className="input-field" type="text" placeholder="dimensions" value={dimensions} onChange={(e) => setDimensions(e.target.value)} />
+                    </div>
+                </div>
+                <div className="medium">
+                    <div className="input-text">
+                        <h4>Medium:</h4>
+                    </div>
+                    <div>
+                        <input className="input-field" type="text" placeholder="medium" value={medium} onChange={(e) => setMedium(e.target.value)} />
+                    </div>
+                </div>
+                <div className="title">
+                    <div className="input-text">
+                        <h4>Title:</h4>
+                    </div>
+                    <div>
+                        <input className="input-field" type="text" placeholder="title" value={title} onChange={(e) => setTitle(e.target.value)} />
+                    </div>
+                </div>
+                <div className="description">
+                    <div className="input-text">
+                        <h4>Description:</h4>
+                    </div>
+                    <div>
+                        <textarea className="input-field" placeholder="description" value={text} onChange={(e) => setText(e.target.value)} />
+                    </div>
+                </div>
+                <div className="width">
+                    <div className="input-text">
+                        <h4>Width:</h4>
+                    </div>
+                    <div>
+                        <input className="input-field" type="text" placeholder="width" value={width} onChange={(e) => setWidth(e.target.value)} />
+                    </div>
+                </div>
+                <div className="height">
+                    <div className="input-text">
+                        <h4>Height:</h4>
+                    </div>
+                    <div>
+                        <input className="input-field" type="text" placeholder="height" value={height} onChange={(e) => setHeight(e.target.value)} />
+                    </div>
+                </div>
+                    <div className="buttons"><button className="clear" onClick={handleClear}> Clear </button> <input className="submit" type="submit" /></div>
                 </form>
                 </div>
             </div>

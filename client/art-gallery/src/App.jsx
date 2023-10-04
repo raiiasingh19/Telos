@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
-// import Painting from './components/paintings/Painting';
-// import UploadForm from './components/upload/Upload';
 import axios from 'axios';
-// import gg from './images/1695796179730_1.png'
+import Login from './components/login/Login';
+import Logout from './components/logout/Logout';
+import { gapi } from "gapi-script";
+
+const clientId = "700787076231-l74feafbp5ud34g109d9k8vf8uvfhn4g.apps.googleusercontent.com";
 
 function App() {
   
@@ -11,14 +13,24 @@ function App() {
   const getPaintings = async () => {
     const result = await axios.get("http://localhost:8000/api/gallery");
     setPainting(result.data)
-    // console.log(result.data)
   }
   useEffect(() => {
     getPaintings()
   }, [])
 
-  // console.log(painting)
-  // console.log(gg)
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId: clientId,
+        scope: " " //different for other apis
+      })
+    }
+
+    gapi.load('client:auth2', start)
+  }, [])
+ 
+  // var accessToken = gapi.auth.getToken().access_token;
+  
     const paintings = painting?.reverse()?.map(item => {
 
         // const string = item.image.data.data.toString('base64');
@@ -38,27 +50,34 @@ function App() {
           //   width={item.width}
           //   height={item.height}
           // />
-          <div className="painting" key={item._id}>
-                <h1>{item.title}</h1>
-                
-                <div className="image"><img src={`/src/images/${item.image}`} alt={item.title} style={{ width: `${item.width}rem`, height: `${item.height}rem` }} /> </div>
-                    <div className="text">
-                        <span>{item.dimensions}</span>
-                        <span>{item.medium}</span>
-                        <p>{item.text}</p>
-                    </div>
-            </div>   
+          // <div className="painting" >
+          <div className="painting-container" key={item._id}>
+            <h1 className="item-title">{item.title}</h1>
+                  <div className="image">
+                    <img src={`/src/images/${item.image}`} alt={item.title} style={{ width: `${item.width}rem`, height: `${item.height}rem` }} /> 
+                  </div>
+                  <div className="specs">
+                      <span>{item.dimensions}  • </span>
+                      <span>{item.medium}</span>
+                      <p id="description">{item.text}</p>
+                  </div>
+          </div>
+          //</div>   
         );
         });
 
   return (
+    <div>
+    <div className='login'>
+    <Login />
+    <Logout />
+    </div>
     <div className='app'>
-      
-      <div className="container">
         {paintings}
-      </div>
+    </div>
     </div>
   );
 }
 
 export default App;
+

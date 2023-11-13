@@ -34,7 +34,10 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 app.use(express.json());
 app.use(cors({
-  origin: 'http://localhost:5173',
+    origin: 'http://localhost:5173',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+    optionsSuccessStatus: 204,
 }));
 dotenv.config();
 

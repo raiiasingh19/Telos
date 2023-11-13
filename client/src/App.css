@@ -1,13 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Architects+Daughter&family=Kalam&family=Macondo&family=Sedgwick+Ave+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz@6..12&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@700&display=swap');
+
+/* olive green #6e702e */
+/* burgundy #691717 */
+/* neutral #e2cc88 */
+/* teal #008080 */
+/* gold #7f6921 */
 
 * {
   margin: 0;
   padding: 0;
-
+  font-family: 'Nunito Sans', sans-serif;;
 }
 
 body {
-  background-image: url(./assets/wall2jpg.jpg);
+  background-color: rgb(2, 115, 115);
+  /* background-image: repeating-linear-gradient(36deg, rgba(255,255,255, 0.25), rgba(255,255,255, 0.25) 1px, transparent 0px, transparent 2px); */
+  background-image: url('./assets/concrete-wall-2-1920x1080.png');
   background-size: cover;
   background-attachment: fixed; 
   overflow-x: hidden;
@@ -23,9 +33,12 @@ body {
   gap: 4rem;
 }
 
+/* NAVBAR */
+
 .navbar {
   display: flex;
   flex-direction: row;
+  font-size: 0.85rem;
   justify-content: flex-end;
   align-items: center;
   padding: 10px 10px 10px 10px;
@@ -33,11 +46,22 @@ body {
   margin-bottom: 10px;
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.4);
   position: sticky;
-  top: 0;
   width: 100%;
   background-color: black;
   color: ivory;
+  top: 0;
   z-index: 6;
+}
+
+.navbar-menu {
+  display: flex;
+  flex-direction: row;
+  margin-top: 1.5rem;
+}
+
+.navbar-logo {
+  display: flex;
+  flex-direction: row;
 }
 
 a {
@@ -54,12 +78,35 @@ a {
 }
 
 .nav-text {
-  margin-right: 40px;
+  margin-right: 30px;
 }
 
-.nav-text:hover, .upload:hover {
+.nav-text:hover, #upload:hover {
   color: rgb(207, 195, 195);
+  cursor: pointer;
 }
+
+/* DROPDOWN */
+
+.dropdown {
+  display: block;
+  position: absolute;
+  top: 4.4rem;
+  right: 2rem;
+}
+
+#profilePic {
+  width: 2rem;
+  border-radius: 10rem;  
+  height: 2rem;
+}
+
+#profilePic:hover {
+  cursor: pointer;
+  border: ivory 2px solid;
+}
+
+/* FORM */
 
 .container {
   padding: 20px;
@@ -68,12 +115,17 @@ a {
   margin: 10px;
 }
 
-.upload {
-  border: none;
-  color: white;
-  background-color: transparent;
+.form-close {
+  color: black;
+  position: relative;
+  top: 0;
+  left: 31rem;
+}
+
+#upload {
+
+  color: ivory;
   font-size: larger;
-  margin-right: 40px;
 }
 
 .form-container {
@@ -98,7 +150,6 @@ a {
   align-items: center;
   padding: 10px;
   color: rgb(107, 95, 24);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .form-header {
@@ -123,6 +174,8 @@ a {
   width: 100%;
 }
 
+/* FORM INPUTS */
+
 .input-image, .dimensions, .medium, .title, .description, .width, .height, .buttons {
   display: flex;
   justify-content: space-between;
@@ -139,8 +192,8 @@ a {
 
 #image-input {
   position: absolute;
-  right: -6%;
-  top: 220%;
+  right: -10.5%;
+  top: 215%;
 }
 
 .buttons {
@@ -181,9 +234,12 @@ a {
   color: rgb(107, 95, 24);
 }
 
+/* PAINTING DISPLAY */
+
 .painting-container {
   padding: 15px;
   margin: 10px;
+  margin-bottom: 30px;
   width: fit-content;
   max-width: 25%;
   color: black;
@@ -191,25 +247,38 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: linear-gradient(to bottom right, transparent, rgba(255, 255, 255, 0.2));
-  backdrop-filter: blur(1px);
-  border: 2px solid rgb(226, 222, 222);
+  background-color: ivory;
+  /* background-color: linear-gradient(to bottom right, transparent, rgba(255, 255, 255, 0.2)); */
+  border: 3px solid #808000;
   border-style: inset;
   box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.5);
   text-align: center;
+  transition: width 2s, height 4s;
+
+}
+
+.app {
+  display: flex;
+  justify-content: space-around;
+  padding: 50px;
 }
 
 .item-title {
   max-width: 75%;
+  /* color: #7f6921; */
+  color: #808000;
 }
+
 
 .painting-container:hover {
   background-image: radial-gradient(rgba(250, 241, 177, 0.5), rgba(243, 247, 196, 0.4), rgba(255, 255, 255, 0.3));
   box-shadow: 0px 0px 20px 10px rgba(255, 255, 240, 0.4);
+  transform: scale(1.1);
 }
 
 .image {
   display: flex;
+  width: auto;
   justify-content: center;
   align-items: center;
   padding: 15px;
@@ -223,16 +292,16 @@ a {
   padding: 10px;
   margin: 5px;
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 0.9rem;
 }
 
 .description {
   font-weight: 400;
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 .item-title {
-  font-family: 'Architects Daughter', cursive;
+  font-family: 'Inconsolata', monospace;
   font-size: 2rem;
   text-transform: uppercase;
 }

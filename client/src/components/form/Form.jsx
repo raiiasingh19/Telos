@@ -2,21 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import '../../App.css';
 
-// function convertToBase64(file) {
-//     return new Promise((resolve, reject) => {
-//         const fileReader = new FileReader();
-//         fileReader.readAsDataURL(file);
-//         fileReader.onload = () => {
-//             resolve(fileReader.result)
-//         };
-//         fileReader.onerror = (error) => {
-//             reject(error)
-//         }
-//     })
-// }
 
-
-function Form() {
+function Form({ isUploadClicked, setIsUploadClicked }) {
     const [image, setImage] = useState(null);
     const [dimensions, setDimensions] = useState("");
     const [medium, setMedium] = useState("");
@@ -25,31 +12,15 @@ function Form() {
     const [width, setWidth] = useState("");
     const [height, setHeight] = useState("");
     const [painting, setPainting] = useState([]);
-// const getGallery = async() => {
-//     const painting =   axios.get(`http://localhost:8000/api/gallery`);
-//     setGallery(painting.data.data);
-// }
 
-// useEffect(() => {
-//     getGallery();
-// }, []);
       
     const handleFileChange = (event) => {
         setImage(event.target?.files[0])
     };
-        // const reader = new FileReader();
-        // // console.log(reader.readAsDataURL(event.target.files[0]))
-    
-        
-        // reader.onloadend = () => {
-        // const base64Image = reader.result; // This contains the base64-encoded image data
-        // setImage(base64Image)// Store or use base64Image as needed
-        // };
 
-        // if (file) {
-        // reader.readAsDataURL(file);
-        // return
-        // }
+    const handleFormClose = (event) => {
+        setIsUploadClicked(!isUploadClicked)
+    };
 
         
     const handleSubmit = async (e) => {
@@ -64,15 +35,6 @@ function Form() {
         formData.append('height', height);
 
         await axios.post("http://localhost:8000/api/gallery/new", 
-        // {
-        //     image: image,
-        //     dimensions: dimensions,
-        //     medium: medium,
-        //     title: title,
-        //     text: text,
-        //     width: width,
-        //     height: height
-        // }
         formData,
         {
             headers : { "Content-Type" : "multipart/form-data" },
@@ -82,16 +44,9 @@ function Form() {
             setPainting(response.data)
         }).catch((err) => console.log(err))
 
-        // formRef.current.focus();
-          
+             
         
     }
-
-    // const handleImageUpload = async (e) => {
-    //     const file = e.target?.files[0];
-    //     const base64 = await handleFileChange(file)
-    //     setImage({...image, image: base64})
-    // }
 
     const handleClear = (e) => {
         e.preventDefault();
@@ -110,6 +65,7 @@ function Form() {
                 <div className='form-header'>
                 <h3 className='form-title'>UPLOAD A NEW PAINTING</h3>
                 </div>
+                <div className='form-close' onClick={handleFormClose}> x </div>
                 <div className='form-body'>
                 <form className="form-content" onSubmit={handleSubmit} encType="multipart/form-data">
                 <div className="input-image">

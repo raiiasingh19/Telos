@@ -1,42 +1,27 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import RequireAuth from "./RequireAuth";
+import useAuth from "./useAuth";
+import Shop from "./pages/shop/Shop";
+import Gallery from "./pages/gallery/Gallery";
 
 function App() {
-  
-  const [painting, setPainting] = useState([])
-
-  const getPaintings = async () => {
-    const result = await axios.get("http://localhost:8000/api/gallery");
-    setPainting(result.data)
-  }
-  useEffect(() => {
-    getPaintings()
-  }, [])
-  
-    const paintings = painting?.reverse()?.map(item => {
-
-        return (
-          <div className="painting-container" key={item._id}>
-            <h1 className="item-title">{item.title}</h1>
-                  <div className="image">
-                    <img src={`/src/images/${item.image}`} alt={item.title} style={{ width: `${item.width}rem`, height: `${item.height}rem` }} /> 
-                  </div>
-                  <div className="specs">
-                      <span>{item.dimensions}  • </span>
-                      <span>{item.medium}</span>
-                      <p id="description">{item.text}</p>
-                  </div>
-          </div>  
-        );
-        });
+  const { user } = useAuth();
 
   return (
-    <div className='app'>
-        {paintings}
-    </div>
-    
+    <React.Fragment>
+      <Routes>
+        <Route element={<RequireAuth />}>
+          <Route path="/" element={<div>Home</div>} />
+          <Route
+            path="/shop"
+            element={<Shop />}
+          />
+          <Route path="/gallery" element={<Gallery user={user} />} />
+        </Route>
+      </Routes>
+    </React.Fragment>
   );
 }
 
 export default App;
-

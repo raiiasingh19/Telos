@@ -1,9 +1,9 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import '../../App.css';
 
 
-function Form({ isUploadClicked, setIsUploadClicked }) {
+function Form({ isUploadClicked, setIsUploadClicked, ToggleSidebar }) {
     const [image, setImage] = useState(null);
     const [dimensions, setDimensions] = useState("");
     const [medium, setMedium] = useState("");
@@ -60,78 +60,83 @@ function Form({ isUploadClicked, setIsUploadClicked }) {
     }
 
     return (
-        <div className='form-container'>
-            <div className='form'>
-                <div className='form-header'>
-                <h3 className='form-title'>UPLOAD A NEW PAINTING</h3>
+        <React.Fragment>
+        <div className={`sidebar ${isUploadClicked === true ? "active" : ""}`}>
+            <div className='form-container'>
+                    <form className="form-content" onSubmit={handleSubmit} encType="multipart/form-data">
+                    <h3 className='sd-header'>UPLOAD A NEW PAINTING</h3>
+                    <div className='form-close' onClick={handleFormClose}> x </div>
+                    <div className="sd-body">
+                    
+                        <div className="input-image">
+                            <div className="input-text">
+                                <h4>Image:</h4>
+                            </div>
+                            <div>
+                                <input id="image-input" className="input-field" type="file" name="image" accept=".jpeg, .jpg, .png" onChange={(e) => handleFileChange(e)} />
+                            </div>
+                        </div>
+                        <div className="dimensions">
+                            <div className="input-text">
+                                <h4>Dimensions:</h4>
+                            </div>
+                            <div>
+                                <input className="input-field" type="text" placeholder="dimensions" value={dimensions} onChange={(e) => setDimensions(e.target.value)} />
+                            </div>
+                        </div>
+                        <div className="medium">
+                            <div className="input-text">
+                                <h4>Medium:</h4>
+                            </div>
+                            <div>
+                                <input className="input-field" type="text" placeholder="medium" value={medium} onChange={(e) => setMedium(e.target.value)} />
+                            </div>
+                        </div>
+                        <div className="title">
+                            <div className="input-text">
+                                <h4>Title:</h4>
+                            </div>
+                            <div>
+                                <input className="input-field" type="text" placeholder="title" value={title} onChange={(e) => setTitle(e.target.value)} />
+                            </div>
+                        </div>
+                        <div className="description">
+                            <div className="input-text">
+                                <h4>Description:</h4>
+                            </div>
+                            <div>
+                                <textarea className="input-field" placeholder="description" value={text} onChange={(e) => setText(e.target.value)} />
+                            </div>
+                        </div>
+                        <div className="width">
+                            <div className="input-text">
+                                <h4>Width:</h4>
+                            </div>
+                            <div>
+                                <input className="input-field" type="text" placeholder="width" value={width} onChange={(e) => setWidth(e.target.value)} />
+                            </div>
+                        </div>
+                        <div className="height">
+                            <div className="input-text">
+                                <h4>Height:</h4>
+                            </div>
+                            <div>
+                                <input className="input-field" type="text" placeholder="height" value={height} onChange={(e) => setHeight(e.target.value)} />
+                            </div>
+                        </div>
+                    </div>
+                        <div className="buttons"><button className="clear" onClick={handleClear}> Clear </button> <input className="submit" type="submit" /></div>
+                    </form>
                 </div>
-                <div className='form-close' onClick={handleFormClose}> x </div>
-                <div className='form-body'>
-                <form className="form-content" onSubmit={handleSubmit} encType="multipart/form-data">
-                <div className="input-image">
-                    <div className="input-text">
-                        <h4>Image:</h4>
-                    </div>
-                    <div>
-                        <input id="image-input" className="input-field" type="file" name="image" accept=".jpeg, .jpg, .png" onChange={(e) => handleFileChange(e)} />
-                    </div>
-                </div>
-                <div className="dimensions">
-                    <div className="input-text">
-                        <h4>Dimensions:</h4>
-                    </div>
-                    <div>
-                        <input className="input-field" type="text" placeholder="dimensions" value={dimensions} onChange={(e) => setDimensions(e.target.value)} />
-                    </div>
-                </div>
-                <div className="medium">
-                    <div className="input-text">
-                        <h4>Medium:</h4>
-                    </div>
-                    <div>
-                        <input className="input-field" type="text" placeholder="medium" value={medium} onChange={(e) => setMedium(e.target.value)} />
-                    </div>
-                </div>
-                <div className="title">
-                    <div className="input-text">
-                        <h4>Title:</h4>
-                    </div>
-                    <div>
-                        <input className="input-field" type="text" placeholder="title" value={title} onChange={(e) => setTitle(e.target.value)} />
-                    </div>
-                </div>
-                <div className="description">
-                    <div className="input-text">
-                        <h4>Description:</h4>
-                    </div>
-                    <div>
-                        <textarea className="input-field" placeholder="description" value={text} onChange={(e) => setText(e.target.value)} />
-                    </div>
-                </div>
-                <div className="width">
-                    <div className="input-text">
-                        <h4>Width:</h4>
-                    </div>
-                    <div>
-                        <input className="input-field" type="text" placeholder="width" value={width} onChange={(e) => setWidth(e.target.value)} />
-                    </div>
-                </div>
-                <div className="height">
-                    <div className="input-text">
-                        <h4>Height:</h4>
-                    </div>
-                    <div>
-                        <input className="input-field" type="text" placeholder="height" value={height} onChange={(e) => setHeight(e.target.value)} />
-                    </div>
-                </div>
-                    <div className="buttons"><button className="clear" onClick={handleClear}> Clear </button> <input className="submit" type="submit" /></div>
-                </form>
-                </div>
-            </div>
         </div>
+                <div
+                    className={`sidebar-overlay ${isUploadClicked === true ? "active" : ""}`}
+                    onClick={ToggleSidebar}
+                >
+
+            </div>
+        </React.Fragment>
     )
 }
-
-
 
 export default Form;

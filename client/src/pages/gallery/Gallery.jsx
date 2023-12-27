@@ -20,7 +20,7 @@ function Gallery({ user }) {
             <h1 className="item-title">{item.title}</h1>
             <div className="image-container">
                   <div className="image">
-                    <img src={`/src/images/${item.image}`} alt={item.title} style={{ width: `${item.width}rem`, height: `${item.height}rem` }} /> 
+                    <img src={`http://localhost:8000/${item.image}`} alt={item.title} style={{ width: `${item.width}rem`, height: `${item.height}rem` }} /> 
                   </div>
             </div>
                   <div className="specs">

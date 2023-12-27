@@ -3,7 +3,7 @@ import Logout from '../../components/logout/Logout'
 import userIcon from '../../assets/usericon.png'
 import Login from '../login/Login';
 
-function Profile() {
+function Profile({ user, handleLogout }) {
 
   const [profilePicture, setProfilePicture] = useState(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -14,8 +14,8 @@ function Profile() {
 
   useEffect(() => {
     
-    if(localStorage.getItem("name") && localStorage.getItem("email") && localStorage.getItem("profilePic")) {
-      setProfilePicture(localStorage.getItem("profilePic"))
+    if(user) {
+      setProfilePicture(user.profilePic)
     } else {
       setProfilePicture(userIcon)
     }
@@ -26,8 +26,8 @@ function Profile() {
     <img id="profilePic" src={profilePicture} onClick={handleProfileClick} /> 
     {isDropdownOpen && (
       <div className="dropdown">
-      {localStorage.getItem("name") && localStorage.getItem("email") && localStorage.getItem("profilePic") ? 
-      (<Logout />): 
+      {user ? 
+      (<Logout handleLogout={() => handleLogout} />): 
       (<Login />)}
       </div>
     )}

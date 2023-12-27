@@ -9,10 +9,14 @@ const multer = require("multer");
 const Painting = require("./models/painting");
 const User = require("./models/user");
 const bodyParser = require("body-parser");
+const path = require('path');
 
 dotenv.config();
 
 const app = express();
+
+path.resolve(__dirname, 'images')
+app.use(express.static(__dirname + '/images'));
 
 const PORT = process.env.PORT || 8000;
 
@@ -44,7 +48,7 @@ app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "../client/art-gallery/src/images");
+    cb(null, "./images/");
   },
   filename: (req, file, cb) => {
     console.log(file);
@@ -73,22 +77,30 @@ passport.use(
       callbackURL: "/auth/google/redirect",
     },
     async function (accessToken, refreshToken, profile, done) {
-      console.log(profile);
-      let user = await User.findOne({ googleId: profile.id });
-      if (!user) {
-        const newUser = new User({
-          name: profile.displayName,
-          email: profile.emails[0].value,
-          googleId: profile.id,
-          profilePic: profile.photos[0].value,
-        });
-        await newUser.save();
-        user = newUser;
+      try {
+        console.log(profile);
+        let user = await User.findOne({ googleId: profile.id });
+
+        if (!user) {
+          const newUser = new User({
+            name: profile.displayName,
+            email: profile.emails[0].value,
+            googleId: profile.id,
+            profilePic: profile.photos[0].value,
+          });
+
+          // Save the new user
+          user = await newUser.save();
+        }
+
+        done(null, user);
+      } catch (error) {
+        done(error);
       }
-      done(null, user);
     }
   )
 );
+
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
@@ -120,7 +132,8 @@ app.get("/auth/google/redirect", passport.authenticate("google", { successRedire
 app.get("/auth/logout", (req, res) => {
   req.logout();
   req.session = null;
-  res.redirect("http://localhost:5173/login");
+  res.clearCookie('connect.sid'); // Clear the connect.sid cookie
+  res.redirect("http://localhost:5173");
 });
 
 app.get("/api/gallery", async (req, res) => {

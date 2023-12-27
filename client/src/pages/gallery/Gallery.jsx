@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function Gallery() {
+function Gallery({ user }) {
   
-  const [painting, setPainting] = useState([])
+  const [painting, setPainting] = useState([]);
 
   const getPaintings = async () => {
     const result = await axios.get("http://localhost:8000/api/gallery");

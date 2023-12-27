@@ -28,5 +28,3 @@ export default function Navbar() {
         </nav>
     )
 }
-// <a href="http://localhost:5173/shop"><span className="nav-text">SHOP</span></a>
-// <span className="nav-text">SEARCH</span>

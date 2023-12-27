@@ -34,7 +34,7 @@ function Form({ isUploadClicked, setIsUploadClicked, ToggleSidebar }) {
         formData.append('width', width);
         formData.append('height', height);
 
-        await axios.post("http://localhost:8000/api/gallery/new", 
+        await axios.post("/api/gallery/new", 
         formData,
         {
             headers : { "Content-Type" : "multipart/form-data" },

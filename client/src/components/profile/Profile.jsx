@@ -2,9 +2,6 @@ import { useState, useEffect } from 'react';
 import Logout from '../../components/logout/Logout'
 import userIcon from '../../assets/usericon.png'
 import Login from '../login/Login';
-// import Login from '../../components/login/Login'
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faUser } from '@fortawesome/free-solid-svg-icons'
 
 function Profile() {
 

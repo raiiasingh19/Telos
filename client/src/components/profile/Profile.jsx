@@ -27,7 +27,10 @@ function Profile({ user, handleLogout }) {
     {isDropdownOpen && (
       <div className="dropdown">
       {user ? 
-      (<Logout handleLogout={() => handleLogout} />): 
+      (<Logout handleLogout={() => {
+        handleLogout(); 
+        setIsDropdownOpen(false); // Close dropdown snce we logged out
+      }} />): 
       (<Login />)}
       </div>
     )}

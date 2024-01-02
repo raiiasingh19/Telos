@@ -130,10 +130,15 @@ app.get("/auth/google/redirect", passport.authenticate("google", { successRedire
 });
 
 app.get("/auth/logout", (req, res) => {
-  req.logout();
-  req.session = null;
-  res.clearCookie('connect.sid'); // Clear the connect.sid cookie
-  res.redirect("http://localhost:5173");
+  req.logout((err) => {
+    if (err) {
+      console.trace(err);
+    }
+  });
+  // req.session = null;
+  // res.clearCookie('connect.sid'); // Clear the connect.sid cookie 
+  // res.redirect("http://localhost:5173"); The call is from axios, so redirect is pointless
+  res.status(200).json({ logout: 'success' }); // Close the request
 });
 
 app.get("/api/gallery", async (req, res) => {

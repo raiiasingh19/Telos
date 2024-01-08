@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function Gallery() {
+function Gallery({ user }) {
   
-  const [painting, setPainting] = useState([])
+  const [painting, setPainting] = useState([]);
 
   const getPaintings = async () => {
     const result = await axios.get("http://localhost:8000/api/gallery");
@@ -20,7 +20,7 @@ function Gallery() {
             <h1 className="item-title">{item.title}</h1>
             <div className="image-container">
                   <div className="image">
-                    <img src={`/src/images/${item.image}`} alt={item.title} style={{ width: `${item.width}rem`, height: `${item.height}rem` }} /> 
+                    <img src={`http://localhost:8000/${item.image}`} alt={item.title} style={{ width: `${item.width}rem`, height: `${item.height}rem` }} /> 
                   </div>
             </div>
                   <div className="specs">

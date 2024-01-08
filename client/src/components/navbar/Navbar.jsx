@@ -1,32 +1,27 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Form from "../form/Form.jsx";
 import Profile from "../profile/Profile.jsx";
-import '../../App.css'
+import '../../App.css';
 
-export default function Navbar() {
-
+export default function Navbar({ user, handleLogout }) {
     const [isUploadClicked, setIsUploadClicked] = useState(false)
 
     const ToggleSidebar = () => {
-        isUploadClicked === true ? setIsUploadClicked(false) : setIsUploadClicked(true);
+        setIsUploadClicked(prevState => !prevState);
     };
 
     return (
         <nav className="navbar">
-            
-                <span className="logo">TELOS ART</span>
-            
-           
-                <a href="http://localhost:5173/"><span className="nav-text">HOME</span></a>
-                <a href="http://localhost:5173/gallery"><span className="nav-text">GALLERY</span></a>
-                <a href="http://localhost:5173/contact"><span className="nav-text">CONTACT</span></a>
-               
-                <span className="nav-text"><Profile /></span>
-                {localStorage.getItem("email")==="raiia.singh1@gmail.com"  ? 
-                <span className="nav-text" id="upload" onClick={ToggleSidebar}>+</span> : null }
-                <Form isUploadClicked={isUploadClicked} setIsUploadClicked={setIsUploadClicked} ToggleSidebar={ToggleSidebar} />
+            <span className="logo">TELOS ART</span>
+            <Link to="/" className="nav-link"><span className="nav-text">HOME</span></Link>
+            <Link to="/gallery" className="nav-link"><span className="nav-text">GALLERY</span></Link>
+            <Link to="/contact" className="nav-link"><span className="nav-text">CONTACT</span></Link>
+            <span className="nav-text"><Profile handleLogout={handleLogout} user={user} /></span>
+            {user?.email === "raiia.singh1@gmail.com" ? (
+                <span className="nav-text" id="upload" onClick={ToggleSidebar}>+</span>
+            ) : null}
+            <Form isUploadClicked={isUploadClicked} setIsUploadClicked={setIsUploadClicked} ToggleSidebar={ToggleSidebar} />
         </nav>
     )
 }
-// <a href="http://localhost:5173/shop"><span className="nav-text">SHOP</span></a>
-// <span className="nav-text">SEARCH</span>

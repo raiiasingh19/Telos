@@ -89,7 +89,6 @@ a {
 /* DROPDOWN */
 
 .dropdown {
-  display: block;
   position: absolute;
   top: 4.4rem;
   right: 2rem;
@@ -106,27 +105,31 @@ a {
   border: ivory 2px solid;
 }
 
+.login-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px;
+}
+
 /* FORM */
 
-.container {
-  padding: 20px;
-  position: relative;
-  top: 60px;
-  margin: 10px;
-}
 
 .form-close {
   color: #191923;
+  background-color: white;
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 5px;
 }
 
 #upload {
-
   color: ivory;
   font-size: larger;
 }
 
 .form-container {
-  
   border: 10px solid #191923;
   background-color: white;
 }
@@ -152,7 +155,6 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border: 2px solid #191923;
 }
 
 /* FORM INPUTS */
@@ -160,21 +162,26 @@ a {
 .input-image, .dimensions, .medium, .title, .description, .width, .height, .buttons {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   padding: 15px;
   width: 75%;
   text-transform: uppercase;
+  margin-right: 20px;
 }
 
 .input-field {
+  margin-left: 20px;
+}
+
+/* .input-field {
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
-}
+} */
 
 #image-input {
   position: relative;
-  right: -10.5%;
+  right: -20%;
   top: 215%;
 }
 
@@ -190,7 +197,7 @@ a {
 
 .clear {
   position: relative;
-  left: 50px;
+  left: 60px;
   width: 30%;
   border: none; 
   text-transform: capitalize;
@@ -235,7 +242,6 @@ a {
   box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.5);
   text-align: center;
   transition: width 2s, height 4s;
-
 }
 
 .app {
@@ -248,17 +254,54 @@ a {
   max-width: 75%;
   /* color: #7f6921; */
   color: #191923;
+ 
   /* -webkit-text-stroke-width: 0.5px; 
   -webkit-text-stroke-color: #F37748;  */
 }
 
 
 .painting-container:hover {
-  background-image: radial-gradient(rgba(250, 241, 177, 0.5), rgba(243, 247, 196, 0.4), rgba(255, 255, 255, 0.3));
-  box-shadow: 0px 0px 20px 10px rgba(255, 255, 240, 0.4);
+  /* box-shadow: 0px 0px 20px 10px rgb(243, 119, 72, 0.6); */
   transform: scale(1.1);
   cursor: pointer;
+  position: relative;
+  /* background-image: radial-gradient(circle at top center, rgba(255, 255, 240, 0.815), #f37648bb, rgba(255, 255, 240, 0.821)); */
 }
+
+ /* clip-path: polygon(50% 0%, 0% 100%, 100% 100%); */
+
+/* .painting-container:hover::backdrop {
+  background-image: radial-gradient(circle at top center, rgba(255, 255, 240, 0.697), #f37648a4, rgba(255, 255, 240, 0.67));
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+} */
+
+.painting-container:hover::before {
+  content: " ";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at top center, transparent, rgba(0, 0, 0, 0.5), rgb(0, 0, 0), rgb(0, 0, 0), rgba(0, 0, 0, 0.5), transparent);
+  clip-path: polygon(0% 0%, 50% 0%, 0% 100%);
+  z-index: 10; 
+  opacity: 0.5;
+}
+
+.painting-container:hover::after {
+  content: " ";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at top center, transparent, rgba(0, 0, 0, 0.5), rgb(0, 0, 0), rgb(0, 0, 0), rgba(0, 0, 0, 0.5), transparent);
+  clip-path: polygon(100% 0%, 50% 0%, 100% 100%);
+  z-index: 10; 
+  opacity: 0.5;
+}
+
+/* radial-gradient(circle at top center, ivory, #F37748, ivory) */
 
 .image {
   display: flex;
@@ -270,10 +313,6 @@ a {
   border-style: inset ridge;
   background-color: white;
   margin-top: 20px;
-}
-
-.image-container {
-  /* background-color: #F37748; */
 
 }
 
@@ -302,13 +341,13 @@ a {
 }
 
 .sidebar{
-    width: 19em;
+    width: 550px;
     min-height: -moz-fit-content;
     min-height: fit-content;
     background-color: #fff;
     position: fixed;
-    top: 5em;
-    right: -100%;
+    top: -100vh;
+    left: 32vw;
     z-index: 1;
     transition: 0.5s;
     border-radius: 10px;
@@ -317,17 +356,18 @@ a {
     box-shadow: 0px 5px 10px 2px rgba(0, 0, 0, 0.25);
 }
 .sidebar.active{
-    right: 0.7em;
+    top: 2rem;
     z-index: 3;
 }
 .sd-header{
     display: flex;
     justify-content: center;
+    align-items: center;
     padding: 1em;
-    padding-top: 2em;
     background-color: #F37748;
-    border-radius: 10px 10px 0px 0px;
-    height: 90px;
+    border-radius: 10px 10px 10px 10px;
+    height: 40px;
+    width: 30rem;
 }
 
 .sidebar-overlay{
@@ -347,7 +387,7 @@ a {
 }
 .sd-body{
   margin-top: 2em;
-    padding: 15px;
+    padding: 10px;
     max-height: calc(100vh - 67px);
     overflow-x: hidden;
     display: flex;

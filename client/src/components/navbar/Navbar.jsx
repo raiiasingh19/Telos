@@ -18,7 +18,7 @@ export default function Navbar({ user, handleLogout }) {
             <Link to="/gallery" className="nav-link"><span className="nav-text">GALLERY</span></Link>
             <Link to="/contact" className="nav-link"><span className="nav-text">CONTACT</span></Link>
             <span className="nav-text"><Profile handleLogout={handleLogout} user={user} /></span>
-            {user?.email === "raiia.singh1@gmail.com" ? (
+            {user?.email === "f20210274@goa.bits-pilani.ac.in" ? (
                 <span className="nav-text" id="upload" onClick={ToggleSidebar}>+</span>
             ) : null}
             <Form isUploadClicked={isUploadClicked} setIsUploadClicked={setIsUploadClicked} ToggleSidebar={ToggleSidebar} />

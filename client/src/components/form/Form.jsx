@@ -63,9 +63,10 @@ function Form({ isUploadClicked, setIsUploadClicked, ToggleSidebar }) {
         <React.Fragment>
         <div className={`sidebar ${isUploadClicked === true ? "active" : ""}`}>
             <div className='form-container'>
+            <div className='form-close' onClick={handleFormClose}> x </div>
                     <form className="form-content" onSubmit={handleSubmit} encType="multipart/form-data">
-                    <h3 className='sd-header'>UPLOAD A NEW PAINTING</h3>
-                    <div className='form-close' onClick={handleFormClose}> x </div>
+                    <h3 className='sd-header'>UPLOAD A NEW PAINTING </h3>
+                    
                     <div className="sd-body">
                     
                         <div className="input-image">

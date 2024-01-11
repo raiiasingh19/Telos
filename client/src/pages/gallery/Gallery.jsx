@@ -13,10 +13,11 @@ function Gallery({ user }) {
     getPaintings()
   }, [])
   
+  
     const paintings = painting?.reverse()?.map(item => {
 
         return (
-          <div className="painting-container" key={item._id}>
+          <div className="painting-container"  key={item._id}>
             <h1 className="item-title">{item.title}</h1>
             <div className="image-container">
                   <div className="image">

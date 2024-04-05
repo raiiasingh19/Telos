@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function Gallery({ user }) {
+function Gallery() { 
   
   const [painting, setPainting] = useState([]);
 
@@ -17,7 +17,7 @@ function Gallery({ user }) {
     const paintings = painting?.reverse()?.map(item => {
 
         return (
-          <div className="painting-container"  key={item._id}>
+          <div key={item._id} className="painting-container"> 
             <h1 className="item-title">{item.title}</h1>
             <div className="image-container">
                   <div className="image">

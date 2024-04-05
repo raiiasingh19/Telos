@@ -1,13 +1,13 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const session = require("express-session");
-const passport = require("passport");
-const GoogleStrategy = require("passport-google-oauth20").Strategy;
+// const session = require("express-session");
+// const passport = require("passport");
+// const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const cors = require("cors");
 const dotenv = require("dotenv");
 const multer = require("multer");
 const Painting = require("./models/painting");
-const User = require("./models/user");
+// const User = require("./models/user");
 const bodyParser = require("body-parser");
 const path = require('path');
 
@@ -58,88 +58,106 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-app.use(
-  session({
-    secret: "telos-art-canvas",
-    resave: false,
-    saveUninitialized: true,
-  })
-);
+// app.use(
+//   session({
+//     secret: "telos-art-canvas",
+//     resave: false,
+//     saveUninitialized: true,
+//     cookie: { secure: true }
+//   })
+// );
 
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 
-passport.use(
-  new GoogleStrategy(
-    {
-      clientID: process.env.GOOGLE_OAUTH_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_OAUTH_CLIENT_SECRET,
-      callbackURL: "/auth/google/redirect",
-    },
-    async function (accessToken, refreshToken, profile, done) {
-      try {
-        console.log(profile);
-        let user = await User.findOne({ googleId: profile.id });
+// passport.use(
+//   new GoogleStrategy(
+//     {
+//       clientID: process.env.GOOGLE_OAUTH_CLIENT_ID,
+//       clientSecret: process.env.GOOGLE_OAUTH_CLIENT_SECRET,
+//       callbackURL: "/auth/google/redirect",
+//     },
+//     async function (accessToken, refreshToken, profile, done) {
+//       try {
+//         console.log(profile);
+//         let user = await User.findOne({ googleId: profile.id });
 
-        if (!user) {
-          const newUser = new User({
-            name: profile.displayName,
-            email: profile.emails[0].value,
-            googleId: profile.id,
-            profilePic: profile.photos[0].value,
-          });
+//         if (!user) {
+//           const newUser = new User({
+//             name: profile.displayName,
+//             email: profile.emails[0].value,
+//             googleId: profile.id,
+//             profilePic: profile.photos[0].value,
+//           });
 
-          // Save the new user
-          user = await newUser.save();
-        }
+//           // Save the new user
+//           user = await newUser.save();
+//         }
 
-        done(null, user);
-      } catch (error) {
-        done(error);
-      }
-    }
-  )
-);
+//         done(null, user);
+//       } catch (error) {
+//         done(error);
+//       }
+//     }
+//   )
+// );
 
 
-passport.serializeUser((user, done) => {
-  done(null, user.id);
-});
+// passport.serializeUser((user, done) => {
+//   done(null, user.id);
+// });
 
-passport.deserializeUser(async (id, done) => {
-  try {
-    const user = await User.findById(id);
-    done(null, user);
-  } catch (error) {
-    done(error);
-  }
-});
+// passport.deserializeUser(async (id, done) => {
+//   try {
+//     const user = await User.findById(id);
+//     done(null, user);
+//   } catch (error) {
+//     done(error);
+//   }
+// });
 
-app.get("/auth/login/success", (req, res) => {
-  if (req.user) {
-    res.status(200).json({ user: req.user });
-  } else {
-    res.status(403).json({ error: "Unauthorised user" });
-  }
-});
+// app.get("/auth/login/success", (req, res) => {
+//   if (req.user) {
+//     res.status(200).json({ user: req.user });
+//   } else {
+//     res.status(403).json({ error: "Unauthorised user" });
+//   }
+// });
 
-app.get("/auth/google", passport.authenticate("google", { scope: ["profile", "email"] }));
+// app.get("/auth/google", passport.authenticate("google", { scope: ["profile", "email"] }));
 
-app.get("/auth/google/redirect", passport.authenticate("google", { successRedirect: "http://localhost:5173", failureRedirect: "auth/login/failed" }), (req, res) => {
-  res.status(200).json(req.user);
-});
+// app.get("/auth/google/redirect", passport.authenticate("google", { successRedirect: "http://localhost:5173", failureRedirect: "auth/login/failed" }), (req, res) => {
+//   res.status(200).json(req.user);
+// });
 
-app.get("/auth/logout", (req, res) => {
-  req.logout((err) => {
-    if (err) {
-      console.trace(err);
-    }
-  });
-  // req.session = null;
-  // res.clearCookie('connect.sid'); // Clear the connect.sid cookie 
-  // res.redirect("http://localhost:5173"); The call is from axios, so redirect is pointless
-  res.status(200).json({ logout: 'success' }); // Close the request
-});
+// app.get("/auth/logout", (req, res) => {
+//   req.logout((err) => {
+//     if (err) {
+//       console.trace(err);
+//     }
+//   });
+//   req.session.destroy((err) => {
+//     if (err) {
+//       console.error("Error destroying session:", err);
+//       return res.status(500).json({ error: "Session destruction failed" });
+//     }
+//     res.clearCookie('connect.sid'); // Clear the connect.sid cookie 
+//     res.redirect("http://localhost:5173"); //The call is from axios, so redirect is pointless
+//     res.status(200).json({ logout: 'success' }); // Close the request
+//   });
+// });
+
+// app.get("/auth/logout", (req, res) => {
+//   req.logout((err) => {
+//     if (err) {
+//       console.trace(err);
+//     }
+//   });
+//   req.session = null;
+//   res.clearCookie('connect.sid'); // Clear the connect.sid cookie 
+//   res.redirect("http://localhost:5173"); //The call is from axios, so redirect is pointless
+//   res.status(200).json({ logout: 'success' }); // Close the request
+// });
 
 app.get("/api/gallery", async (req, res) => {
   const painting = await Painting.find();

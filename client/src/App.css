@@ -236,6 +236,7 @@ a {
   justify-content: center;
   align-items: center;
   background-color: ivory;
+  filter: brightness(95%);
   /* background-color: linear-gradient(to bottom right, transparent, rgba(255, 255, 255, 0.2)); */
   border: 6px outset #CADF9E;
   border-style: inset;
@@ -265,6 +266,7 @@ a {
   transform: scale(1.1);
   cursor: pointer;
   position: relative;
+  filter: brightness(130%);
   /* background-image: radial-gradient(circle at top center, rgba(255, 255, 240, 0.815), #f37648bb, rgba(255, 255, 240, 0.821)); */
 }
 
@@ -282,7 +284,7 @@ a {
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at top center, transparent, rgba(0, 0, 0, 0.5), rgb(0, 0, 0), rgb(0, 0, 0), rgba(0, 0, 0, 0.5), transparent);
+  background: radial-gradient(circle at top center, transparent, rgba(0, 0, 0, 0.6), rgb(0, 0, 0.3), rgb(0, 0, 0.1), rgba(0, 0, 0, 0.6), transparent);
   clip-path: polygon(0% 0%, 50% 0%, 0% 100%);
   z-index: 10; 
   opacity: 0.5;
@@ -295,13 +297,17 @@ a {
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at top center, transparent, rgba(0, 0, 0, 0.5), rgb(0, 0, 0), rgb(0, 0, 0), rgba(0, 0, 0, 0.5), transparent);
+  background: radial-gradient(circle at top center, transparent, rgba(0, 0, 0, 0.6), rgb(0, 0, 0.3), rgb(0, 0, 0.1), rgba(0, 0, 0, 0.6), transparent);
   clip-path: polygon(100% 0%, 50% 0%, 100% 100%);
   z-index: 10; 
   opacity: 0.5;
 }
 
 /* radial-gradient(circle at top center, ivory, #F37748, ivory) */
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.464);
+}
 
 .image {
   display: flex;
@@ -398,4 +404,62 @@ a {
 .sd-body-header{
   font-size: 1.2rem;
   font-weight: 600;
+}
+
+/* CAROUSEL */
+
+.carousel-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.carousel-wrapper {
+  display: flex;
+  width: 100%;
+  position: relative;
+}
+
+.carousel-content-wrapper {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-content {
+  display: flex;
+  transition: all 250ms linear;
+  -ms-overflow-style: none;  /* hide scrollbar in IE and Edge */
+  scrollbar-width: none;  /* hide scrollbar in Firefox */
+}
+
+/* hide scrollbar in webkit browser */
+.carousel-content::-webkit-scrollbar, .carousel-content::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-content > * {
+  width: 100%;
+  flex-shrink: 0;
+  flex-grow: 1;
+}
+
+.left-arrow, .right-arrow {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 24px;
+  background-color: white;
+  border: 1px solid #ddd;
+}
+
+.left-arrow {
+  left: 24px;
+}
+
+.right-arrow {
+  right: 24px;
 }

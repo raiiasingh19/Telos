@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Form from "../form/Form.jsx";
-import Profile from "../profile/Profile.jsx";
+// import Profile from "../profile/Profile.jsx";
 import '../../App.css';
 
 export default function Navbar() {

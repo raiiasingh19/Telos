@@ -19,31 +19,36 @@ export default function Navbar() {
                 setKeyPressed(keyPressed+event.key);
                 if (event.key === 'Enter') {
                   setlastFourChars(keyPressed.slice(-4));
+                  console.log("lfc: ", lastFourChars)
+                  setKeyPressed('');
+                }
+                
+                if(lastFourChars === 'pogo') {
                   setIsAdminLoggedIn(true);
-                   
+                  console.log('pogo detected!')
                 }
                 
             };
             
-            const handleEnterKey = (event) => {
-              if(event.key === 'Enter' && isAdminLoggedIn) {
-                setKeyPressed(''); // Clear keystrokes after detecting "pogo"
-              }
+            // const handleEnterKey = (event) => {
+            //   if(event.key === 'Enter' && isAdminLoggedIn) {
+            //      // Clear keystrokes after detecting "pogo"
+            //   }
               
-            };
+            // };
 
             window.addEventListener('keydown', handleKeyDown);        
-            window.addEventListener('keydown', handleEnterKey);
+            // window.addEventListener('keydown', handleEnterKey);
         
             return () => {
               window.removeEventListener('keydown', handleKeyDown);
-              window.removeEventListener('keydown', handleEnterKey);
+              // window.removeEventListener('keydown', handleEnterKey);
             };
           
 
         }, [isAdminLoggedIn, lastFourChars,keyPressed])
         console.log(isAdminLoggedIn)
-        console.log("lfc: ", lastFourChars)
+        
 
         
     

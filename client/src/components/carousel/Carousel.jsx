@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import leftarrow from './left-arrow.svg'
+import rightarrow from './right-arrow.svg'
 
 const Carousel = (props) => {
     const {children} = props;
@@ -18,7 +20,7 @@ const Carousel = (props) => {
     }
   
     const prev = () => {
-        if (currentIndex > 0) {
+        if (currentIndex >= 0) {
             setCurrentIndex(prevState => prevState - 1)
         }
     }
@@ -26,21 +28,24 @@ const Carousel = (props) => {
     return (
         <div className="carousel-container">
             <div className="carousel-wrapper">
-              {
-                currentIndex > 0 &&
-                <button onClick={prev} className="left-arrow">
-                  &lt;
-                </button>
-              }
-              
+
+            
+
+                {
+                    currentIndex > 0 &&
+                    <button onClick={prev} className="left-arrow">
+                    <img src={leftarrow} />
+                    </button>
+                }
+                
                   <div className="carousel-content-wrapper">
                   </div>
 
                 {
-                  currentIndex < (length - 1) &&
-                  <button onClick={next} className="right-arrow">
-                      &gt;
-                  </button>
+                    currentIndex < (length - 1) &&
+                    <button onClick={next} className="right-arrow">
+                    <img src={rightarrow} />
+                    </button>
                 }  
             </div>
                     <div className="carousel-content" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>

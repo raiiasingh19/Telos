@@ -72,7 +72,7 @@ export default function Navbar() {
             
           {isAdminLoggedIn ? (<span className="nav-text" id="upload" onClick={ToggleSidebar}>+</span>) : null}
         
-
+          {/* shows when pogo is typed and enter is hit twice */}
 
             <Form isUploadClicked={isUploadClicked} setIsUploadClicked={setIsUploadClicked} ToggleSidebar={ToggleSidebar} />
         </nav>

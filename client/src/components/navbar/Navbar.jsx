@@ -64,6 +64,7 @@ export default function Navbar() {
     return (
         <nav className="navbar">
             <span className="logo">TELOS ART</span>
+            <div className="links">
             <Link to="/" className="nav-link"><span className="nav-text">HOME</span></Link>
             <Link to="/gallery" className="nav-link"><span className="nav-text">GALLERY</span></Link>
             <Link to="/contact" className="nav-link"><span className="nav-text">CONTACT</span></Link>
@@ -71,6 +72,7 @@ export default function Navbar() {
 
             
           {isAdminLoggedIn ? (<span className="nav-text" id="upload" onClick={ToggleSidebar}>+</span>) : null}
+            </div>
         
           {/* shows when pogo is typed and enter is hit twice */}
 

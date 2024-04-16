@@ -1,10 +1,8 @@
 import React from 'react'
-import { Link } from "react-router-dom";
+
 // import { useState } from 'react'
 import Carousel from '../../components/carousel/Carousel'
-import img1 from '../../components/carousel/1695998230383_Parisian_Monks.png'
-import img2 from '../../components/carousel/1696240889373_Rhetorical_Flourish.png'
-import img3 from '../../components/carousel/1696243305016_Hues_Of_A_Raging_Storm.png'
+
 import pogoimg from './daddy.jpg'
 
 const Home = () => { // { user }
@@ -23,39 +21,39 @@ const Home = () => { // { user }
         </p>
         <img className='intro-img' src={pogoimg} alt='pogo'></img>
       </div>
-      <div className='carousel-panel'>
-      <div className='carousel-title'><p>RECENT WORKS</p></div>
-        <Carousel>
+      
+      
+        {/* <Carousel> */}
         {/* homeIndex={homeIndex} setHomeIndex={setHomeIndex} leftArrowClick={leftArrowClick} setLeftArrowClick={setLeftArrowClick} rightArrowClick={rightArrowClick} rightLeftArrowClick={setRightArrowClick} */}
-          <div className='carousel-image-1-container'> 
-          {/* {
+          {/* <div className='carousel-image-1-container'> 
+           {
             homeIndex===0 && rightArrowClick &&
             <img className='fade-out carousel-image-1' src={img1} alt="placeholder" />
           }
           {
             homeIndex===0 && leftArrowClick &&
             <img className='fade-in carousel-image-1' src={img1} alt="placeholder" />
-          } */}
+          } 
 
           <img className='carousel-image-1' src={img1} alt="placeholder" />          
           </div>
 
           <div className='carousel-image-2-container'>
 
-          {/* {
+          {
             homeIndex===0 && rightArrowClick &&
             <img className='fade-out carousel-image-2' src={img2} alt="placeholder" />
           }
           {
             homeIndex===0 && leftArrowClick &&
             <img className='fade-in carousel-image-2' src={img2} alt="placeholder" />
-          } */}
+          } 
 
           <img className='carousel-image-2' src={img2} alt="placeholder" />
           </div>
 
           <div className='carousel-image-3-container'>
-          {/* 
+          
           {
             homeIndex===0 && rightArrowClick &&
             <img className='fade-out carousel-image-3' src={img3} alt="placeholder" />
@@ -63,11 +61,14 @@ const Home = () => { // { user }
           {
             homeIndex===0 && leftArrowClick &&
             <img className='fade-in carousel-image-3' src={img3} alt="placeholder" />
-          } */}
+          } 
           <img className='carousel-image-3' src={img3} alt="placeholder" />
           </div>
-        </Carousel>
-        <Link to="/gallery"><div className='explore'><p>EXPLORE MORE &gt;</p></div></Link>
+        </Carousel> */}
+      <div className='carousel-panel'>
+
+        <Carousel />
+        
       </div>
     </div>
   )
